@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS finance_tracker;
+
+USE finance_tracker;
+
+CREATE TABLE IF NOT EXISTS user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS transaction (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    amount FLOAT NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    description VARCHAR(200),
+    date DATETIME NOT NULL
+);

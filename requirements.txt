@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+Flask-MySQLdb
+Flask-JWT-Extended
+SQLAlchemy
+Werkzeug
+Flask-SQLAlchemy
