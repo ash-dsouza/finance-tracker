@@ -48,3 +48,8 @@ __pycache__/
 *.pyc
 config.py
 .env
+
+# Angular cache
+/frontend/.angular/cache/
+.angular/cache/
+
