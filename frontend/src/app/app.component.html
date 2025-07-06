@@ -1,5 +1,6 @@
-<app-header></app-header>
+
+<app-header *ngIf="showLayout"></app-header>
 <div class="container mt-4">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onRouteChange($event)"></router-outlet>
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="showLayout"></app-footer>
