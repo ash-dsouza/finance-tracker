@@ -52,3 +52,11 @@ body {
 .table td, .table th {
   border: 1px solid #2A293E;
 }
+
+button{
+background-color: #f8f4e5;
+color: #2A293E;
+border: #f8f4e5;
+}
+
+
