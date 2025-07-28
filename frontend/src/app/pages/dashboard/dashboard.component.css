@@ -1,4 +1,4 @@
-.bg-gradient-primary {
+/* .bg-gradient-primary {
   background: linear-gradient(to right, #a9bbef, #224abe);
 }
 .bg-gradient-success {
@@ -6,4 +6,49 @@
 }
 .bg-gradient-info {
   background: linear-gradient(to right, #928db6, #6053bf);
+} */
+
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+
+body {
+  font-family: 'Fjalla One', sans-serif;
+  background: #f8f4e5;
+  color: #2A293E;
+}
+
+/* Card Style */
+.card-custom {
+  background: #f8f4e5;
+  border: 2px solid black;
+  box-shadow: 12px 12px 0px 1px #ffa580, 12px 12px 0px 2px black;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Button Style */
+.btn-custom {
+  background: #ffa580;
+  color: black;
+  border: 2px solid black;
+  box-shadow: 3px 3px 1px 1px #95a4ff, 3px 3px 1px 2px black;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-custom:hover {
+  background: black;
+  color: white;
+}
+
+/* Table Styling */
+.table thead {
+  background: #ffa580;
+  color: black;
+}
+
+.table td, .table th {
+  border: 1px solid #2A293E;
 }
