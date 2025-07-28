@@ -1,0 +1,45 @@
+<!-- src/app/pages/add-entry/add-entry.component.html -->
+<div class="contact-us">
+  <form (ngSubmit)="onSubmit()" #entryForm="ngForm">
+    <input
+      placeholder="Title"
+      type="text"
+      name="title"
+      [(ngModel)]="entry.title"
+      required
+    />
+
+    <input
+      placeholder="Amount (₹)"
+      type="number"
+      name="amount"
+      [(ngModel)]="entry.amount"
+      required
+    />
+
+    <!-- <input
+      placeholder="Category"
+      type="text"
+      name="category"
+      [(ngModel)]="entry.category"
+      required
+    /> -->
+
+    <select [(ngModel)]="entry.category" name="category" class="form-control" required>
+      <option value="" disabled selected>Select a category</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <br>
+
+    <input
+      placeholder="Date"
+      type="date"
+      name="date"
+      [(ngModel)]="entry.date"
+      required
+    />
+
+    <button type="submit">Add Entry</button>
+  </form>
+</div>
