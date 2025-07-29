@@ -3,6 +3,7 @@ import {
   ChartConfiguration,
   ChartData
 } from 'chart.js';
+import { Entry, EntryService } from 'src/app/services/entry.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,18 +12,39 @@ import {
 })
 export class DashboardComponent {
 
+  entries: Entry[] = [];
+  totalEntries = 0;
+  monthlySpending = 0;
   today = new Date();
-  totalEntries = 24;
-  monthlySpending = 1835;
 
-  // Info cards content
+  constructor(private entryService: EntryService) {}
+
+  ngOnInit(): void {
+    this.entryService.entries$.subscribe((entries) => {
+      this.entries = entries;
+      this.totalEntries = entries.length;
+
+      const currentMonth = new Date().getMonth();
+      this.monthlySpending = entries
+        .filter(e => new Date(e.date).getMonth() === currentMonth)
+        .reduce((sum, e) => sum + e.amount, 0);
+    });
+  }
+
+  // today = new Date();
+  // totalEntries = 24;
+  // monthlySpending = 1835;
+
+
+
+  // // Info cards content
   dashboardCards = [
     { title: 'Total Entries', value: this.totalEntries },
     { title: 'Monthly Spending', value: `₹${this.monthlySpending}` },
     { title: 'Today', value: this.today.toDateString() }
   ];
 
-  // Bar chart labels and data
+  // // Bar chart labels and data
   public barChartData: ChartData<'bar'> = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
@@ -56,10 +78,12 @@ export class DashboardComponent {
     }
   };
 
-  // Transactions data
-  transactions = [
-    { date: '2025-06-01', desc: 'Groceries', amt: 550 },
-    { date: '2025-06-10', desc: 'Electricity Bill', amt: 950 },
-    { date: '2025-06-16', desc: 'Internet', amt: 335 }
-  ];
+  // // Transactions data
+  get recentTransactions() {
+    return this.entries.slice(-5).reverse(); // last 5 entries, newest first
+  }
+
+
+  
+
 }

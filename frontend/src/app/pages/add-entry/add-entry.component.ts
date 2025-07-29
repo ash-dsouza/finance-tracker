@@ -1,5 +1,6 @@
-import { Component} from '@angular/core';
-import { ReactiveFormsModule,FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { EntryService } from 'src/app/services/entry.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-entry',
@@ -7,51 +8,38 @@ import { ReactiveFormsModule,FormBuilder, FormGroup, Validators } from '@angular
   styleUrls: ['./add-entry.component.css']
 })
 export class AddEntryComponent {
-  
   entry = {
     title: '',
-    amount: '',
-    category:'',
+    amount: null,
+    category: '',
     date: ''
   };
 
   categories: string[] = [
-  'Food & Dining',
-  'Utilities',
-  'Rent',
-  'Entertainment',
-  'Transportation',
-  'Healthcare',
-  'Education',
-  'Savings',
-  'Miscellaneous'
-];
+    'Food & Dining',
+    'Utilities',
+    'Rent',
+    'Entertainment',
+    'Transportation',
+    'Healthcare',
+    'Education',
+    'Savings',
+    'Miscellaneous'
+  ];
 
-  
-  entryForm: FormGroup;
-  submitted = false;
+  constructor(private entryService: EntryService, private router: Router) {}
 
-  constructor(private fb: FormBuilder) {
-    this.entryForm = this.fb.group({
-      name: ['', Validators.required],
-      customerEmail: ['', [Validators.required, Validators.email]],
-      customerPhone: ['', [Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{4}')]]
-    
-    });
+  onSubmit(): void {
+    // Map title → desc to match the service interface
+    const entryToAdd = {
+      desc: this.entry.title,
+      amount: Number(this.entry.amount),
+      category: this.entry.category,
+      date: this.entry.date
+    };
+
+    this.entryService.addEntry(entryToAdd);
+    alert('Entry added!');
+    this.router.navigate(['/dashboard']);
   }
-
-  onSubmit() {
-    this.submitted = true;
-    if (this.entryForm.valid) {
-      console.log('Entry Submitted:', this.entryForm.value);
-      // Handle API call or state update here
-      alert('Entry submitted successfully!');
-      this.entryForm.reset();
-      this.submitted = false;
-    }
-  }
-
-
-
-
 }

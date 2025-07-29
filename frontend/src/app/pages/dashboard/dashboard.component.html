@@ -1,10 +1,13 @@
+
+<br><br><br><br>
+
 <div class="card card-custom p-2 d-inline-block">
   <button class="btn btn-sm btn-primary" routerLink="/add-entry">Add Entry</button>
 </div>
 
 <div class="container mt-5">
   <!-- Info Cards -->
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-4" *ngFor="let card of dashboardCards">
       <div class="card card-custom">
         <div class="card-body">
@@ -13,7 +16,35 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <div class="row">
+  <div class="col-md-4">
+    <div class="card card-custom">
+      <div class="card-body">
+        <h5 class="card-title">Total Entries</h5>
+        <p class="display-6">{{ totalEntries }}</p>
+      </div>
+    </div>
   </div>
+  <div class="col-md-4">
+    <div class="card card-custom">
+      <div class="card-body">
+        <h5 class="card-title">Monthly Spending</h5>
+        <p class="display-6">₹{{ monthlySpending }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-custom">
+      <div class="card-body">
+        <h5 class="card-title">Today</h5>
+        <p class="display-6">{{ today | date: 'fullDate' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Bar Chart -->
   <div class="card card-custom">
@@ -39,10 +70,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tx of transactions">
-            <td>{{ tx.date }}</td>
+          <tr *ngFor="let tx of recentTransactions">
+            <td>{{ tx.date | date:'mediumDate'  }}</td>
             <td>{{ tx.desc }}</td>
-            <td>{{ tx.amt }}</td>
+            <td>{{ tx.amount }}</td>
           </tr>
         </tbody>
       </table>
