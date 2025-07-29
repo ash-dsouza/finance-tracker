@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AddEntryComponent } from './pages/add-entry/add-entry.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AddEntryComponent } from './pages/add-entry/add-entry.component';
     FooterComponent,
     LoginComponent,
     DashboardComponent,
-    AddEntryComponent
+    AddEntryComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
